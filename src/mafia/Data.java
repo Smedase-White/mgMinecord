@@ -20,12 +20,11 @@ public class Data
 	}
 	
 
-	public String[] all = new String[]{"mafia", "resident", "doctor", "commissioner", "don", "fallen", "jealous", "maniac", "journalist", "witness", "fatale"};
-	public int countRoles = all.length;
 	public enum allRoles {mafia, resident, doctor, commissioner, don, fallen, jealous, maniac, journalist, witness, fatale, noone, lead, died};
+	public allRoles[] all = new allRoles[]{allRoles.mafia, allRoles.resident, allRoles.doctor, allRoles.commissioner, allRoles.don, allRoles.fallen, allRoles.jealous, allRoles.maniac, allRoles.journalist, allRoles.witness, allRoles.fatale, allRoles.noone, allRoles.lead, allRoles.died};
+	public int countRoles = all.length;
 	public int[] lifeCount = new int[countRoles];
 	
-	public allRoles[] allE = new allRoles[]{allRoles.mafia, allRoles.resident, allRoles.doctor, allRoles.commissioner, allRoles.don, allRoles.fallen, allRoles.jealous, allRoles.maniac, allRoles.journalist, allRoles.witness, allRoles.fatale, allRoles.noone, allRoles.lead, allRoles.died};
 	public allRoles[] turns = new allRoles[] {allRoles.noone, allRoles.witness, allRoles.journalist, allRoles.fallen, allRoles.jealous, allRoles.mafia, allRoles.maniac, allRoles.doctor, allRoles.commissioner, allRoles.don, allRoles.witness, allRoles.fatale, allRoles.noone};
 	public allRoles[][] date = new allRoles[][] {{allRoles.commissioner, allRoles.fallen, allRoles.witness, allRoles.doctor, allRoles.journalist}, {allRoles.mafia, allRoles.don, allRoles.jealous, allRoles.fatale}, {allRoles.maniac}};
 	public byte[] rarity = new byte[] {1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1};
@@ -451,7 +450,7 @@ public class Data
 			if (r.isAim) Kill(r.number);
 			r.p.sendMessage(plugin.getConfig().getString("messages.mafia.turn_day").replace("&", "§"));
 			awake(r.p);
-			for (int i = 0; i < countRoles; i++) if (r.who() == allE[i]) lifeCount[i]++; 
+			for (int i = 0; i < countRoles; i++) if (r.who() == all[i]) lifeCount[i]++; 
 		}
 		for (int i = 0; i < countRoles; i++)
 		{
