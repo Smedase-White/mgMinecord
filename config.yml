@@ -1,0 +1,118 @@
+messages:
+    mafia:
+        description_help: "Узнать команды"
+        description_commandLead: "Комманды ведущего:"
+        description_commandPlayer: "Комманды игроков:"
+        description_start: "§lСтарт игры!"
+        description_end: "§lЗакончить игру!"
+        description_roles: "Выставить количесво мест в ролях"
+        description_take: "Взять готовый набор ролей"
+        description_add: "Добавить игрока в список"
+        description_del: "Убрать игрока из списка"
+        description_list: "Получить список"
+        description_night: "Включить §lночь"
+        description_next: "Следующий ход"
+        description_log: "Показать §lлог ночи"
+        description_kill: "'Убить' игрока"
+        description_setDiedPos: "Поставить точку, куда попадают умершие игроки"
+        description_setStartPos: "Поставить стартовую точку"
+        description_active: "Сделать действие"
+        description_chat: "Написать в чат игры"
+        resident: "Обычный житель"
+        commissioner: "Комисар"
+        fallen: "Падшая женщина"
+        witness: "Свидетель"
+        doctor: "Доктор"
+        journalist: "Журналист"
+        mafia: "Мафия"
+        don: "Дон Мафии"
+        jealous: "Ревнивец"
+        fatale: "Роковая женщина"
+        maniac: "Маньяк"
+        notActive: "§c§lВы не можете этого сделать"
+        success_start: "Игра начата"
+        success_end: "Игра закончена"
+        success_roles: "Роли выставлены:"
+        success_add: "Игрок внесён в список"
+        success_del: "Игрок убран из списка"
+        success_give: "Игрокам выданы роли"
+        success_setDiedPos: "Точка, куда попадают умершие игроки, поставлена"
+        success_setStartPos: "Стартовая точка поставлена"
+        success_killPlayer: "§cИгрок убит"
+        success_healPlayer: "§2Игрок вылечен"
+        success_checkPlayer: "§lИгрок проверен: "
+        success_molestPlayer: "§lВы попристовали к игроку"
+        success_followPlayer: "§lВы следите за игроком"
+        success_mutePlayer: "§lРот игрока заткнут"
+        error_active: "§c§lИгрок не найден в списке"
+        error_players_roles: "§c§lКоличество игроков не равно количеству мест"
+        error_someself: "§c§lВы не можете применить это действие к самому себе"
+        empty_list: "§c§lСписок пустой"
+        list: "Список:"
+        date_group0: "Оглашение начала ознокомительной ночи"
+        date_group1: "Встречаются игроки из группы добрых"
+        date_group2: "Встречаются игроки из группы мафии"
+        date_group3: "Встречаются игроки из группы одиночек"
+        date_group4: "Оглашение окончания ознокомительной ночи"
+        turn_night: "§0Наступает ночь"
+        turn_day: "§9Наступает день"
+        turn_commissioner: "Ходит §nКомисар"
+        turn_fallen: "Ходит §nПадшая женщина"
+        turn_witness: "Ходит §nСвидетель"
+        turn_doctor: "Ходит §nДоктор"
+        turn_journalist: "Ходит §nЖурналист"
+        turn_mafia: "Ходит §nМафия"
+        turn_don: "Ходит §nДон Мафии"
+        turn_jealous: "Ходит §nРевнивец"
+        turn_fatale: "Ходит §nРоковая женщина"
+        turn_maniac: "Ходит §nМаньяк"
+        turn_noone: "Пустой ход, для §nВедущего"
+        text_resident: "§4§lВы Обычный житель"
+        text_commissioner: "§4§lВы Комисар"
+        text_fallen: "§4§lВы Падшая женщина"
+        text_witness: "§4§lВы Свидетель"
+        text_doctor: "§4§lВы Доктор"
+        text_journalist: "§4§lВы Журналист"
+        text_mafia: "§8§lВы Мафия"
+        text_don: "§8§lВы Дон Мафии"
+        text_jealous: "§8§lВы Ревнивец"
+        text_fatale: "§8§lВы Роковая женщина"
+        text_maniac: "§7§lВы Маньяк"
+        text_check: " проверил игрока "
+        text_molest: " приставала к игроку "
+        text_heal: " вылечил игрока "
+        text_follow: " проследил за игроком " 
+        text_mute: " заткнула рот игроку " 
+        text_kill: " убил игрока "
+        text_died: "§cУмер игрок "
+        one: "Одна группа"
+        different: "Разные группы"
+        day: "§9Сейчас день"
+    errors:
+        notEnoughArguments: "&4Недостаточно аргументов для выполнения комманды"
+        notFoundPlayer: "&4Игрок не найден на сервере"
+        notExistCommand: "&4Такой команды не существует"
+        notPermission: "&4У вас нет прав"
+        invalidArgument: "&4Неверный аргумент"
+        notPlayer: "&4Вы не играете"
+kits:
+    values:
+    - '5 8 12 16'
+    5:
+    - '1 3 0 1 0 0 0 0 0 0 0 - Набор §l«Classic-MINI»'
+    - '1 2 1 1 0 0 0 0 0 0 0 - Набор §l«Heal-MINI»'
+    8:
+    - '2 5 0 1 0 0 0 0 0 0 0 - Набор §l«Classic»'
+    - '2 4 1 1 0 0 0 0 0 0 0 - Набор §l«Heal»'
+    - '2 3 1 1 1 0 0 0 0 0 0 - Набор §l«Mafia+»'
+    12:
+    - '2 8 0 1 1 0 0 0 0 0 0 - Набор §l«Classic+»'
+    - '2 5 2 1 1 1 0 0 0 0 0 - Набор §l«Heal+»'
+    - '2 6 1 1 1 0 1 0 0 0 0 - Набор §l«Mafia++»'
+    - '2 5 1 1 1 0 0 0 1 1 0 - Набор §l«Double game»'
+    16:
+    - '3 10 0 2 1 0 0 0 0 0 0 - Набор §l«Classic++»'
+    - '3 8 2 1 1 1 0 0 0 0 0 - Набор §l«Heal++»'
+    - '2 8 1 1 1 1 1 1 0 0 0 - Набор §l«Mafia EXTRA»'
+    - '3 7 1 1 1 0 0 0 2 1 0 - Набор §l«Double game+»'
+    - '3 7 1 1 1 0 0 0 1 1 1 - Набор §l«Check»'
