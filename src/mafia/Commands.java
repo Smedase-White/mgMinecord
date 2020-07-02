@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.NameTagVisibility;
 
 import mafia.Data.*;
 
@@ -13,6 +14,7 @@ import java.lang.Math;
 
 import mg.main.mgMain;
 
+@SuppressWarnings("deprecation")
 public class Commands implements CommandExecutor
 {
 	private mgMain plugin;
@@ -112,6 +114,9 @@ public class Commands implements CommandExecutor
 							}
 							temp = 0;
 							data.leader = data.new Lead(p);
+							if (data.sc.getTeam("invisibleNick") == null) data.tm = data.sc.registerNewTeam("invisibleNick");
+							else data.tm = data.sc.getTeam("invisibleNick");
+							data.tm.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OWN_TEAM);
 							for (int r = 0; r < data.countRoles; r++)
 							{
 								for (int i = 0; i < data.values[r]; i++)
@@ -134,7 +139,7 @@ public class Commands implements CommandExecutor
 										case(10): { data.roles.add(data.new Witness(tempP, temp)); break; }
 									}
 									tempP.teleport(data.startPos);
-									plugin.invisibleNick(tempP);
+									data.tm.addPlayer(p);
 									temp++;
 								}
 							}
@@ -154,7 +159,7 @@ public class Commands implements CommandExecutor
 							}
 							while (data.roles.size() > 0)
 							{
-								plugin.visibleNick(data.roles.get(0).p);
+								data.tm.removePlayer(data.roles.get(0).p);
 								data.awake(data.roles.get(0).p);
 								data.roles.remove(0);
 							}
@@ -387,7 +392,7 @@ public class Commands implements CommandExecutor
 								return true;
 							}
 							data.awake(ap);
-							plugin.visibleNick(ap);
+							data.tm.removePlayer(ap);
 							return true;
 						}
 						default:

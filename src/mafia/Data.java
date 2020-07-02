@@ -2,10 +2,13 @@ package mafia;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import mg.main.mgMain;
 
@@ -53,6 +56,9 @@ public class Data
 	
 	Role empty = new Role();
 	Lead leader;
+	
+	Scoreboard sc = Bukkit.getScoreboardManager().getMainScoreboard();
+	Team tm;
 	
 	public class Role
 	{
@@ -527,5 +533,6 @@ public class Data
 			night();
 			return;
 		}
+		
 	}
 }
