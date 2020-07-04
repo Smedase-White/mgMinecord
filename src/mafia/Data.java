@@ -2,24 +2,23 @@ package mafia;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 
 import mg.main.mgMain;
 
 public class Data 
 {
-	
 	private mgMain plugin;
+	private FileConfiguration lang;
 	
-	public Data(mgMain plugin)
+	public Data(mgMain plugin, FileConfiguration lang)
 	{
 		this.plugin = plugin;
+		this.lang = lang;
 	}
 	
 
@@ -44,8 +43,8 @@ public class Data
 	public ArrayList<Player> ps = new ArrayList<>();
 	public ArrayList<Role> roles = new ArrayList<>();
 	
-	public Location diedPos;
-	public Location startPos;
+	public Location diedPos = null;
+	public Location startPos = null;
 	
 	public boolean isPlay = false;
 	public boolean isNight = false;
@@ -56,9 +55,6 @@ public class Data
 	
 	Role empty = new Role();
 	Lead leader;
-	
-	Scoreboard sc = Bukkit.getScoreboardManager().getMainScoreboard();
-	Team tm;
 	
 	public class Role
 	{
@@ -72,11 +68,11 @@ public class Data
 		public allRoles who() {return allRoles.noone;};
 		public void Active(Role _p)
 		{
-			p.sendMessage(plugin.getConfig().getString("messages.mafia.notActive"));
+			p.sendMessage(lang.getString("messages.mafia.notActive"));
 		}
 		public void Active(Role _p1, Role _p2)
 		{
-			p.sendMessage(plugin.getConfig().getString("messages.mafia.notActive"));
+			p.sendMessage(lang.getString("messages.mafia.notActive"));
 		}
 	}
 	
@@ -108,18 +104,18 @@ public class Data
 				String tempS;
 				if ((_p.who() == allRoles.mafia) || (_p.who() == allRoles.don))
 				{
-					tempS = plugin.getConfig().getString("messages.mafia.mafia").replace("&", "§");
+					tempS = lang.getString("messages.mafia.mafia").replace("&", "§");
 				}
 				else
 				{
-					tempS = plugin.getConfig().getString("messages.mafia.resident").replace("&", "§");
+					tempS = lang.getString("messages.mafia.resident").replace("&", "§");
 				}
 				loging(p, _p, "check");
 				p.sendMessage(tempS);
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -146,7 +142,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -181,7 +177,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -218,13 +214,13 @@ public class Data
 				if (_p1 != _p2)
 				{
 					loging(p, _p1, _p2, "check");
-					if (_p1.group == _p2.group) p.sendMessage(plugin.getConfig().getString("messages.mafia.one").replace("&", "§"));
-					else p.sendMessage(plugin.getConfig().getString("messages.mafia.different").replace("&", "§"));
+					if (_p1.group == _p2.group) p.sendMessage(lang.getString("messages.mafia.one").replace("&", "§"));
+					else p.sendMessage(lang.getString("messages.mafia.different").replace("&", "§"));
 				}
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -252,7 +248,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -283,7 +279,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -311,7 +307,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -334,7 +330,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -359,7 +355,7 @@ public class Data
 			}
 			else
 			{
-				p.sendMessage(plugin.getConfig().getString("messages.mafia.error_someself").replace("&", "§"));
+				p.sendMessage(lang.getString("messages.mafia.error_someself").replace("&", "§"));
 			}
 		}
 	}
@@ -402,16 +398,16 @@ public class Data
 		
 	private void loging(Player p, Role _p, String active)
 	{
-		p.sendMessage(plugin.getConfig().getString("messages.mafia.success_" + active + "Player").replace("&", "§") + " " + _p.p.getDisplayName());
-		leader.p.sendMessage(p.getDisplayName() + plugin.getConfig().getString("messages.mafia.text_" + active).replace("&", "§") + _p.p.getDisplayName());
-		log.add(p.getDisplayName() + plugin.getConfig().getString("messages.mafia.text_" + active).replace("&", "§") + _p.p.getDisplayName());
+		p.sendMessage(lang.getString("messages.mafia.success_" + active + "Player").replace("&", "§") + " " + _p.p.getDisplayName());
+		leader.p.sendMessage(p.getDisplayName() + lang.getString("messages.mafia.text_" + active).replace("&", "§") + _p.p.getDisplayName());
+		log.add(p.getDisplayName() + lang.getString("messages.mafia.text_" + active).replace("&", "§") + _p.p.getDisplayName());
 	}
 	
 	private void loging(Player p, Role _p1, Role _p2, String active)
 	{
-		p.sendMessage(plugin.getConfig().getString("messages.mafia.success_" + active + "Player").replace("&", "§") + " " + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName());
-		leader.p.sendMessage(p.getDisplayName() + plugin.getConfig().getString("messages.mafia.text_" + active).replace("&", "§") + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName());
-		log.add(p.getDisplayName() + plugin.getConfig().getString("messages.mafia.text_" + active).replace("&", "§") + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName() );
+		p.sendMessage(lang.getString("messages.mafia.success_" + active + "Player").replace("&", "§") + " " + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName());
+		leader.p.sendMessage(p.getDisplayName() + lang.getString("messages.mafia.text_" + active).replace("&", "§") + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName());
+		log.add(p.getDisplayName() + lang.getString("messages.mafia.text_" + active).replace("&", "§") + _p1.p.getDisplayName() + ", " + _p2.p.getDisplayName() );
 	}
 		
 	private void standartConstructor(Role p)
@@ -444,8 +440,8 @@ public class Data
 		Role tempR = new Died(roles.get(index).p);
 		roles.set(index, tempR);
 		tempR.p.teleport(diedPos);
-		for(Role r : roles) r.p.sendMessage(plugin.getConfig().getString("messages.mafia.text_died").replace("&", "§") + roles.get(index).p.getDisplayName());
-		leader.p.sendMessage(plugin.getConfig().getString("messages.mafia.text_died").replace("&", "§") + roles.get(index).p.getDisplayName());
+		for(Role r : roles) r.p.sendMessage(lang.getString("messages.mafia.text_died").replace("&", "§") + roles.get(index).p.getDisplayName());
+		leader.p.sendMessage(lang.getString("messages.mafia.text_died").replace("&", "§") + roles.get(index).p.getDisplayName());
 	}
 	
 	public void day()
@@ -454,18 +450,18 @@ public class Data
 		for (Role r : roles) 
 		{
 			if (r.isAim) Kill(r.number);
-			r.p.sendMessage(plugin.getConfig().getString("messages.mafia.turn_day").replace("&", "§"));
+			r.p.sendMessage(lang.getString("messages.mafia.turn_day").replace("&", "§"));
 			awake(r.p);
 			for (int i = 0; i < countRoles; i++) if (r.who() == all[i]) lifeCount[i]++; 
 		}
 		for (int i = 0; i < countRoles; i++)
 		{
-			if (lifeCount[i] != 0) leader.p.sendMessage(plugin.getConfig().getString("messages.mafia." + all[i]).replace("&", "§") + ": " + Integer.toString(lifeCount[i]));
+			if (lifeCount[i] != 0) leader.p.sendMessage(lang.getString("messages.mafia." + all[i]).replace("&", "§") + ": " + Integer.toString(lifeCount[i]));
 		}
 		turn = 0;
 		day++;
 		isNight = false;
-		leader.p.sendMessage(plugin.getConfig().getString("messages.mafia.turn_day").replace("&", "§"));
+		leader.p.sendMessage(lang.getString("messages.mafia.turn_day").replace("&", "§"));
 	}
 	
 	public void date()
@@ -475,8 +471,8 @@ public class Data
 			day();
 			return;
 		}
-		for (Role r : roles) plugin.setActionBar(r.p, plugin.getConfig().getString("messages.mafia.date_group" + Integer.toString(turn)).replace("&", "§"));;
-		leader.p.sendMessage(plugin.getConfig().getString("messages.mafia.date_group" + Integer.toString(turn)).replace("&", "§"));
+		for (Role r : roles) plugin.setActionBar(r.p, lang.getString("messages.mafia.date_group" + Integer.toString(turn)).replace("&", "§"));;
+		leader.p.sendMessage(lang.getString("messages.mafia.date_group" + Integer.toString(turn)).replace("&", "§"));
 		for (Role r : roles)
 		{
 			if (r.group == turn)
@@ -507,8 +503,8 @@ public class Data
 		canActive[turn] = true;
 		if (tempB)
 		{
-			for (Role r : roles) plugin.setActionBar(r.p, plugin.getConfig().getString("messages.mafia.turn_" + turns[turn]).replace("&", "§"));;
-			leader.p.sendMessage(plugin.getConfig().getString("messages.mafia.turn_" + turns[turn]).replace("&", "§"));
+			for (Role r : roles) plugin.setActionBar(r.p, lang.getString("messages.mafia.turn_" + turns[turn]).replace("&", "§"));;
+			leader.p.sendMessage(lang.getString("messages.mafia.turn_" + turns[turn]).replace("&", "§"));
 			for (Role r : roles)
 			{
 				if ((turns[turn] == r.who()) || (r.who() == allRoles.died))
